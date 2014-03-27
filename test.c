@@ -88,11 +88,6 @@ int test_tilt_left()
 {
   int e=0;
   
-  e|=ttl_vector(0,0,0,0,"Empty list is empty after shift",0,0,0,0);
-  e|=ttl_vector(1,0,0,0,"Value on left stays on left after shift",1,0,0,0);
-  e|=ttl_vector(0,0,0,1,"Value on right shifts to left edge after shift",1,0,0,0);
-  e|=ttl_vector(0,0,1,0,"Value in (right) middle shifts to left edge after shift",1,0,0,0);
-  e|=ttl_vector(0,1,0,0,"Value in (left) middle shifts to left edge after shift",1,0,0,0);
   e|=ttl_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
   e|=ttl_vector(1,1,1,1,"Combinations don't cascade",2,2,0,0);
   e|=ttl_vector(0,0,1,1,"Combines and shift left",2,0,0,0);
@@ -104,8 +99,12 @@ int test_tilt_left()
 int main(int argc,char **argv)
 {
   int e=0;
-  //e|=test_slide_left();
-  //e|=test_tilt_left();
+  printf("Testing slide single left\n\n");
   e|=test_slide_single_left();
+  printf("Testing slide left\n\n");
+  e|=test_slide_left();
+  printf("Testing tilt left\n\n");
+  e|=test_tilt_left();
+  
   return e;
 }
