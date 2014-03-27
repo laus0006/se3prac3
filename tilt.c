@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "2048.h"
 
+int slide_single_to_left(int *int1, int *int2){
+  if(*int1 == 0 && *int2 != 0){
+    *int1 = *int2;
+    *int2 = 0;
+  }
+  return 0;
+}
+
 int slide_tiles_to_left(int length, int *line){
   int src;
   int dest;
@@ -9,7 +17,6 @@ int slide_tiles_to_left(int length, int *line){
       if(line[src] != 0 && line[dest] == 0){
 	line[dest] = line[src];
 	line[src] = 0;
-	break;
       }
     }
   }
@@ -23,14 +30,19 @@ int tilt_line_left(int length,int *line)
   
   // slide tiles to the left
   slide_tiles_to_left(length, line);
-
   int src;
   // combine tiles as required
   for(src=0;src<length-1;src++){
     if (line[src] == line[src+1]){
-      //line[src
+      line[src] *= 2;
+      line[src+1] = 0;
+      //move current element along
+      src += 1;
     }
   }
+  
+  // slide tiles to the left
+  slide_tiles_to_left(length, line);
 
 
   return 0;
