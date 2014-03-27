@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "2048.h"
-
+ 
 int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
                 int o1,int o2,int o3,int o4, int (*func)(int,int *))
 {
@@ -12,6 +12,7 @@ int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
   }
   fflush(stdout);
   func(4,list);
+  //tilt_line_left(4, list);
   if ((list[0]!=o1)||(list[1]!=o2)||(list[2]!=o3)||(list[3]!=o4))
     {
       printf("FAILED: {%d,%d,%d,%d} became {%d,%d,%d,%d} instead of"
