@@ -66,6 +66,8 @@ int test_slide_single_left(){
   int e=0;
   e|=ttl_slide_single_left(0,1, "Value on right shifts to left",1,0,slide_single_to_left);
   e|=ttl_slide_single_left(1,0, "Value on left stays to left",1,0,slide_single_to_left);
+  e|=ttl_slide_single_left(2,4, "Distinct Values don't combine",2,4,slide_single_to_left);
+  e|=ttl_slide_single_left(2,1, "Combinations keep order",2,1,slide_single_to_left);
   return e;
 }
 
