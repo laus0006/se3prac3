@@ -14,10 +14,7 @@ int slide_tiles_to_left(int length, int *line){
   int dest;
   for(dest=0;dest<length-1;dest++){
     for(src = 1;src<length;src++){
-      if(line[src] != 0 && line[dest] == 0){
-	line[dest] = line[src];
-	line[src] = 0;
-      }
+      slide_single_to_left(&line[dest],&line[src]);
     }
   }
   return 0;
