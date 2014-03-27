@@ -65,6 +65,7 @@ int ttl_slide_single_left(int i1, int i2, char *msg, int o1, int o2,
 int test_slide_single_left(){
   int e=0;
   e|=ttl_slide_single_left(0,1, "Value on right shifts to left",1,0,slide_single_to_left);
+  e|=ttl_slide_single_left(1,0, "Value on left stays to left",1,0,slide_single_to_left);
   return e;
 }
 
