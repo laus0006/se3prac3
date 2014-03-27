@@ -38,6 +38,36 @@ int ttl_vector_slide_left(int i1,int i2,int i3,int i4,char *msg,
   return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,slide_tiles_to_left);
 }
 
+int ttl_slide_single_left(int i1, int i2, char *msg, int o1, int o2,
+  						int (*func)(int *,int *)){
+  int list[2]={i1,i2};
+
+  if (msg) printf("%s - ",msg); 
+  else {
+    printf("Tilting {%d,%d} left yields {%d,%d} - ",
+             i1,i2,o1,o2);
+  }
+  fflush(stdout);
+  func(&list[0],&list[1]);
+  //tilt_line_left(4, list);
+  if ((list[0]!=o1)||(list[1]!=o2))
+    {
+      printf("FAILED: {%d,%d} became {%d,%d} instead of"
+             " {%d,%d}\n",
+             i1,i2,list[0],list[1],
+             o1,o2);
+      return -1;
+    } 
+  printf("PASSED.\n");
+  return 0;
+}
+
+int test_slide_single_left(){
+  int e=0;
+  e|=ttl_slide_single_left(0,1, "Value on right shifts to left",1,0,slide_single_to_left);
+  return e;
+}
+
 int test_slide_left(){
   int e=0;
   e|=ttl_vector_slide_left(0,0,0,0,"Empty list is empty after shift",0,0,0,0);
@@ -62,16 +92,17 @@ int test_tilt_left()
   e|=ttl_vector(0,1,0,0,"Value in (left) middle shifts to left edge after shift",1,0,0,0);
   e|=ttl_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
   e|=ttl_vector(1,1,1,1,"Combinations don't cascade",2,2,0,0);
-  e|=ttl_vector(0,0,1,1,"Doesn't combines and shift left",2,0,0,0);
-  e|=ttl_vector(4,0,1,1,"Doesn't keep Uncombinable value or combine others",4,2,0,0);
-  e|=ttl_vector(2,0,1,1,"Doesn't limit to one move",2,2,0,0);
+  e|=ttl_vector(0,0,1,1,"Combines and shift left",2,0,0,0);
+  e|=ttl_vector(4,0,1,1,"Keep Uncombinable value or combine others",4,2,0,0);
+  e|=ttl_vector(2,0,1,1,"Limit to one move",2,2,0,0);
   return e;
 }
 
 int main(int argc,char **argv)
 {
   int e=0;
-  e|=test_slide_left();
-  e|=test_tilt_left();
+  //e|=test_slide_left();
+  //e|=test_tilt_left();
+  e|=test_slide_single_left();
   return e;
 }
