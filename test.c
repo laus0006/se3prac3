@@ -12,7 +12,6 @@ int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
   }
   fflush(stdout);
   func(4,list);
-  //tilt_line_left(4, list);
   if ((list[0]!=o1)||(list[1]!=o2)||(list[2]!=o3)||(list[3]!=o4))
     {
       printf("FAILED: {%d,%d,%d,%d} became {%d,%d,%d,%d} instead of"
@@ -106,8 +105,8 @@ int test_tilt_right(){
   int e=0;
   
   e|=ttr_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
-  e|=ttr_vector(1,1,1,1,"Combinations don't cascade",0,0,1,1);
-  e|=ttr_vector(0,0,1,1,"Combines and shift left",0,0,0,0);
+  e|=ttr_vector(1,1,1,1,"Combinations don't cascade",0,0,2,2);
+  e|=ttr_vector(0,0,1,1,"Combines and shift left",0,0,0,2);
   e|=ttr_vector(4,0,1,1,"Keep Uncombinable value or combine others",0,0,4,2);
   e|=ttr_vector(2,0,1,1,"Limit to one move",0,0,2,2);
   return e;
