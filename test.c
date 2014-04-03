@@ -32,6 +32,12 @@ int ttl_vector(int i1,int i2,int i3,int i4,char *msg,
   return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,tilt_line_left);
 }
 
+int ttr_vector(int i1,int i2,int i3,int i4,char *msg,
+               int o1,int o2,int o3,int o4)
+{
+  return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,tilt_line_right);
+}
+
 int ttl_vector_slide_left(int i1,int i2,int i3,int i4,char *msg,
                int o1,int o2,int o3,int o4)
 {
@@ -96,6 +102,17 @@ int test_tilt_left()
   return e;
 }
 
+int test_tile_right(){
+  int e=0;
+  
+  e|=ttr_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
+  e|=ttr_vector(1,1,1,1,"Combinations don't cascade",0,0,1,1);
+  e|=ttr_vector(0,0,1,1,"Combines and shift left",0,0,0,0);
+  e|=ttr_vector(4,0,1,1,"Keep Uncombinable value or combine others",0,0,4,2);
+  e|=ttr_vector(2,0,1,1,"Limit to one move",0,0,2,2);
+  return e;
+}
+
 int main(int argc,char **argv)
 {
   int e=0;
@@ -105,6 +122,7 @@ int main(int argc,char **argv)
   e|=test_slide_left();
   printf("Testing tilt left\n\n");
   e|=test_tilt_left();
+  printf("Testing tilt right\n\n");
   
   return e;
 }
