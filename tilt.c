@@ -12,10 +12,24 @@ int slide_single_to_left(int *int1, int *int2){
 int slide_tiles_to_left(int length, int *line){
   int src;
   int dest;
+	/*
   for(dest=0;dest<length-1;dest++){
-    for(src = 1;src<length;src++){
-      slide_single_to_left(&line[dest],&line[src]);
-    }
+    if(line[dest] != 0){
+		for(src = dest+1;src<length;src++){
+		  slide_single_to_left(&line[dest],&line[src]);
+		}
+	}
+  }
+  */
+  for(src = 1; src < length; src++){
+	if(line[src] != 0){
+	  for(dest = 0;dest < length && dest < src;dest++){
+		if (line[dest] == 0){
+		  slide_single_to_left(&line[dest],&line[src]);
+		  break;
+		}
+	  }
+	}
   }
   return 0;
 }
