@@ -18,5 +18,7 @@ int combine_tiles(int length,int *line,int offset);
 int tilt_through_empty_space(int length, int *line);
 int tilt_line_left(int length,int *line);
 int tilt_line_right(int length,int *line);
+int tilt_line_up(int length,int *line);
+int tilt_line_down(int length,int *line);
 int slide_tiles_to_left(int length, int *line);
 int slide_single_to_left(int *int1, int *int2);

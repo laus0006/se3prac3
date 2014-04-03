@@ -36,6 +36,18 @@ int ttr_vector(int i1,int i2,int i3,int i4,char *msg,
   return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,tilt_line_right);
 }
 
+int ttu_vector(int i1,int i2,int i3,int i4,char *msg,
+               int o1,int o2,int o3,int o4)
+{
+  return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,tilt_line_up);
+}
+
+int ttd_vector(int i1,int i2,int i3,int i4,char *msg,
+               int o1,int o2,int o3,int o4)
+{
+  return line_vector_test(i1,i2,i3,i4,msg,o1,o2,o3,o4,tilt_line_down);
+}
+
 int ttl_vector_slide_left(int i1,int i2,int i3,int i4,char *msg,
                int o1,int o2,int o3,int o4)
 {
