@@ -1,5 +1,27 @@
 #include <stdio.h>
 #include "2048.h"
+//tilt board left
+int tbl(int size, int **boardStart, int **boardEnd){
+  printf("Tilting\n");
+  board_display(size, boardStart);
+  printf("\ninto");
+  board_display(size,boardEnd);
+  
+  tilt_board_left(size, boardStart);
+  
+  int x,y;
+  for( x = 0;x < size;x++){
+	for( y=0;y<size;y++){
+	  if (boardStart[x][y] != boardEnd[x][y]){
+	    printf("Failed at element (%d,%d)\n Was %d, should be %d."
+		,x,y,boardStart[x][y],boardEnd[x][y]);
+	    return -1;
+	  }
+	}
+  }
+  printf("Success");
+  return 1;
+}
  
 int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
                 int o1,int o2,int o3,int o4, int (*func)(int,int *))
@@ -143,6 +165,23 @@ int test_tilt_down(){
   e|=ttd_vector(2,0,1,1,"Limit to one move",0,0,2,2);
   return e;
 }
+int test_board_left(){
+  int e=0;
+  
+  int boardStart[4][4] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+  int boardEnd[4][4]= {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+  //boardStart 
+  //boardEnd = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+
+  e|=tbl(4, boardStart, boardEnd);
+/*   e|=tbl(4, **boardStart, **boardEnd);
+  e|=tbl(4, **boardStart, **boardEnd);
+  e|=tbl(4, **boardStart, **boardEnd);
+  e|=tbl(4, **boardStart, **boardEnd);
+  e|=tbl(4, **boardStart, **boardEnd); */
+
+  return e;
+}
 
 int main(int argc,char **argv)
 {
@@ -159,5 +198,7 @@ int main(int argc,char **argv)
   e|=test_tilt_up();
   printf("\nTesting tilt down\n\n");
   e|=test_tilt_down();
+  printf("\nTesting tilt board left\n\n");
+  e|=test_board_left();
   return e;
 }
