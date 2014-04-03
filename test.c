@@ -22,7 +22,6 @@ int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
     } 
   printf("PASSED.\n");
   return 0;
-  
 }
 
 int ttl_vector(int i1,int i2,int i3,int i4,char *msg,
@@ -112,6 +111,27 @@ int test_tilt_right(){
   return e;
 }
 
+int test_tilt_up(){
+  int e=0;
+  e|=ttu_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
+  e|=ttu_vector(1,1,1,1,"Combinations don't cascade",2,2,0,0);
+  e|=ttu_vector(0,0,1,1,"Combines and shift left",2,0,0,0);
+  e|=ttu_vector(4,0,1,1,"Keep Uncombinable value or combine others",4,2,0,0);
+  e|=ttu_vector(2,0,1,1,"Limit to one move",2,2,0,0);
+  return e;
+}
+
+int test_tilt_down(){
+  int e=0;
+  
+  e|=ttd_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
+  e|=ttd_vector(1,1,1,1,"Combinations don't cascade",0,0,2,2);
+  e|=ttd_vector(0,0,1,1,"Combines and shift left",0,0,0,2);
+  e|=ttd_vector(4,0,1,1,"Keep Uncombinable value or combine others",0,0,4,2);
+  e|=ttd_vector(2,0,1,1,"Limit to one move",0,0,2,2);
+  return e;
+}
+
 int main(int argc,char **argv)
 {
   int e=0;
@@ -123,5 +143,9 @@ int main(int argc,char **argv)
   e|=test_tilt_left();
   printf("\nTesting tilt right\n\n");
   e|=test_tilt_right();
+  printf("\nTesting tilt up\n\n");
+  e|=test_tilt_up();
+  printf("\nTesting tilt down\n\n");
+  e|=test_tilt_down();
   return e;
 }

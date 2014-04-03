@@ -65,5 +65,13 @@ int tilt_line_right(int length,int *line)
   
   return 0;
 }
+int tilt_line_up(int length, int *line){
+  tilt_line_left(length, line);  
+  return 0;
+}
+int tilt_line_down(int length, int *line){
+  tilt_line_right(length, line);  
+  return 0;
+}
 
 
