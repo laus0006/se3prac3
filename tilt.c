@@ -12,15 +12,7 @@ int slide_single_to_left(int *int1, int *int2){
 int slide_tiles_to_left(int length, int *line){
   int src;
   int dest;
-	/*
-  for(dest=0;dest<length-1;dest++){
-    if(line[dest] != 0){
-		for(src = dest+1;src<length;src++){
-		  slide_single_to_left(&line[dest],&line[src]);
-		}
-	}
-  }
-  */
+
   for(src = 1; src < length; src++){
 	if(line[src] != 0){
 	  for(dest = 0;dest < length && dest < src;dest++){
@@ -56,6 +48,21 @@ int tilt_line_left(int length,int *line)
   slide_tiles_to_left(length, line);
 
 
+  return 0;
+}
+
+int tilt_line_right(int length,int *line)
+{
+  //invert
+  if (length == 4){
+    int lineL[4] = {line[3],line[2],line[1],line[0]};
+	tilt_line_left(length,lineL);
+	line[0]=lineL[3];
+	line[1]=lineL[2];
+	line[2]=lineL[1];
+	line[3]=lineL[0];
+  }
+  
   return 0;
 }
 
