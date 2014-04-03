@@ -102,7 +102,7 @@ int test_tilt_left()
   return e;
 }
 
-int test_tile_right(){
+int test_tilt_right(){
   int e=0;
   
   e|=ttr_vector(1,2,4,8,"Distinct values don't combine",1,2,4,8);
@@ -116,13 +116,13 @@ int test_tile_right(){
 int main(int argc,char **argv)
 {
   int e=0;
-  printf("Testing slide single left\n\n");
+  printf("\nTesting slide single left\n\n");
   e|=test_slide_single_left();
-  printf("Testing slide left\n\n");
+  printf("\nTesting slide left\n\n");
   e|=test_slide_left();
-  printf("Testing tilt left\n\n");
+  printf("\nTesting tilt left\n\n");
   e|=test_tilt_left();
-  printf("Testing tilt right\n\n");
-  
+  printf("\nTesting tilt right\n\n");
+  e|=test_tilt_right();
   return e;
 }
