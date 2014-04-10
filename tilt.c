@@ -20,12 +20,39 @@ int tilt_board_left(int size, int **board){
   return 0;
 }
 int tilt_board_right(int size, int **board){
+  int i =0;
+  for (i =0;i<size;i++){
+  //extract a line 
+  int list[4]={board[0][i],board[1][i],board[2][i],board[3][i]};
+  
+  //tilt the line
+    tilt_line_right(size, &list);
+	
+	//save back
+	board[0][i] = list[0];
+	board[1][i] = list[1];
+	board[2][i] = list[2];
+	board[3][i] = list[3];
+	
+  }
+  
   return 0;
 }
+
 int tilt_board_up(int size, int **board){
-  return 0;
+  int i =0;
+  for (i =0;i<size;i++){
+  //tilt the line
+    tilt_line_left(size, board[i]);
+  }
 }
+
 int tilt_board_down(int size, int **board){
+  int i =0;
+  for (i =0;i<size;i++){
+  //tilt the line
+    tilt_line_right(size, board[i]);
+  }
   return 0;
 }
 
