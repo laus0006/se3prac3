@@ -34,3 +34,19 @@ int board_display(int size,int **board)
   return 0;
 }
 
+
+int board_spawn_tile(int size,int **board){
+int x;
+int y;
+  for(x = 0;x < size;x++){
+    for(y = 0;y < size;y++){
+	  if (board[x][y] == 0){
+	    //add new tile and finish
+	    board[x][y] = 1;
+		return 1;
+	  }
+	}
+  }
+  return 0;
+}
+
