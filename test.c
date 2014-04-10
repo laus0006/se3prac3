@@ -222,7 +222,8 @@ int test_board_left(){
   int e=0;
   
 
-  e|=board3_vector_test(0,0,0,0,
+  e|=board3_vector_test(
+		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
@@ -230,6 +231,50 @@ int test_board_left(){
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
+		0,0,0,0,
+		tilt_board_left);
+  e|=board3_vector_test(
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		"Tilt left column 1s board left",
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		tilt_board_left);
+  e|=board3_vector_test(
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		"Tilt right column 1s board left",
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		tilt_board_left);
+  e|=board3_vector_test(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Tilt 1s board left and merge",
+		2,2,0,0,
+		2,2,0,0,
+		2,2,0,0,
+		2,2,0,0,
+		tilt_board_left);
+	e|=board3_vector_test(
+		1,1,1,1,
+		0,0,0,0,
+		1,1,1,1,
+		0,0,0,0,
+		"Tilt 1s board left and merge, keep empty rows",
+		2,2,0,0,
+		0,0,0,0,
+		2,2,0,0,
 		0,0,0,0,
 		tilt_board_left);
 
