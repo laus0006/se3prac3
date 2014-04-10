@@ -217,7 +217,7 @@ int test_board_left(){
 		0,0,0,1,
 		0,0,0,1,
 		0,0,0,1,
-		"Tilt left column 1s board left",
+		"Tilt right column 1s board left",
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -228,7 +228,7 @@ int test_board_left(){
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
-		"Tilt right column 1s board left",
+		"Tilt left column 1s board left",
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -258,6 +258,129 @@ int test_board_left(){
 		tilt_board_left);
   return e;
 }
+int test_board_right(){
+  int e=0;
+  
+
+  e|=board3_vector_test(
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		"Tilt empty board right",
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_right);
+  e|=board3_vector_test(
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		"Tilt right column 1s board right",
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		tilt_board_right);
+  e|=board3_vector_test(
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		"Tilt left column 1s board right",
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		tilt_board_right);
+  e|=board3_vector_test(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Tilt 1s board right and merge",
+		0,0,2,2,
+		0,0,2,2,
+		0,0,2,2,
+		0,0,2,2,
+		tilt_board_right);
+	e|=board3_vector_test(
+		1,1,1,1,
+		0,0,0,0,
+		1,1,1,1,
+		0,0,0,0,
+		"Tilt 1s board right and merge, keep empty rows",
+		0,0,2,2,
+		0,0,0,0,
+		0,0,2,2,
+		0,0,0,0,
+		tilt_board_right);
+  return e;
+}
+
+int test_board_up(){
+  int e=0;
+  
+
+  e|=board3_vector_test(
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		"Tilt empty board up",
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_up);
+  e|=board3_vector_test(
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		"Tilt left column 1s board up",
+		0,0,0,2,
+		0,0,0,2,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_up);
+  e|=board3_vector_test(
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		"Tilt right column 1s board up",
+		2,0,0,0,
+		2,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_up);
+  e|=board3_vector_test(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Tilt 1s board up and merge",
+		2,2,2,2,
+		2,2,2,2,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_up);
+	e|=board3_vector_test(
+		1,1,1,1,
+		0,0,0,0,
+		1,1,1,1,
+		0,0,0,0,
+		"Tilt 1s board up and merge, keep empty rows",
+		2,2,2,2,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_up);
+  return e;
+}
 
 int main(int argc,char **argv)
 {
@@ -276,5 +399,9 @@ int main(int argc,char **argv)
   e|=test_tilt_down();
   printf("\nTesting tilt board left\n\n");
   e|=test_board_left();
+  printf("\nTesting tilt board up\n\n");
+  e|=test_board_right();
+  printf("\nTesting tilt board up\n\n");
+  e|=test_board_up();
   return e;
 }

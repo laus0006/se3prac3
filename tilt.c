@@ -19,6 +19,15 @@ int tilt_board_left(int size, int **board){
   }
   return 0;
 }
+int tilt_board_right(int size, int **board){
+  return 0;
+}
+int tilt_board_up(int size, int **board){
+  return 0;
+}
+int tilt_board_down(int size, int **board){
+  return 0;
+}
 
 int slide_single_to_left(int *int1, int *int2){
   if(*int1 == 0 && *int2 != 0){
