@@ -399,7 +399,7 @@ int main(int argc,char **argv)
   e|=test_tilt_down();
   printf("\nTesting tilt board left\n\n");
   e|=test_board_left();
-  printf("\nTesting tilt board up\n\n");
+  printf("\nTesting tilt board right\n\n");
   e|=test_board_right();
   printf("\nTesting tilt board up\n\n");
   e|=test_board_up();
