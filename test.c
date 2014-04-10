@@ -382,6 +382,68 @@ int test_board_up(){
   return e;
 }
 
+int test_board_down(){
+  int e=0;
+  
+
+  e|=board3_vector_test(
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		"Tilt empty board down",
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		tilt_board_down);
+  e|=board3_vector_test(
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		0,0,0,1,
+		"Tilt left column 1s board down",
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,2,
+		0,0,0,2,
+		tilt_board_down);
+  e|=board3_vector_test(
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		1,0,0,0,
+		"Tilt right column 1s board down",
+		0,0,0,0,
+		0,0,0,0,
+		2,0,0,0,
+		2,0,0,0,
+		tilt_board_down);
+  e|=board3_vector_test(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Tilt 1s board down and merge",
+		0,0,0,0,
+		0,0,0,0,
+		2,2,2,2,
+		2,2,2,2,
+		tilt_board_down);
+	e|=board3_vector_test(
+		1,1,1,1,
+		0,0,0,0,
+		1,1,1,1,
+		0,0,0,0,
+		"Tilt 1s board down and merge, keep empty rows",
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		2,2,2,2,
+		tilt_board_down);
+  return e;
+}
+
 int main(int argc,char **argv)
 {
   int e=0;
@@ -403,5 +465,7 @@ int main(int argc,char **argv)
   e|=test_board_right();
   printf("\nTesting tilt board up\n\n");
   e|=test_board_up();
+  printf("\nTesting tilt board down\n\n");
+  e|=test_board_down();
   return e;
 }
