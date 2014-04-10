@@ -180,7 +180,7 @@ int board3_vector_test(int i1,int i2,int i3,int i4,
       (board[0][0]!=o1)||(board[1][0]!=o2)||(board[2][0]!=o3)|| (board[3][0]!=o4)||
 	  (board[0][1]!=o5)||(board[1][1]!=o6)||(board[2][1]!=o7)||(board[3][1]!=o8)||
 	  (board[0][2]!=o9)||(board[1][2]!=o10)||(board[2][2]!=o11)||(board[3][2]!=o12)||
-	  (board[0][3]!=o13)||(board[1][2]!=o14)||(board[2][3]!=o15)||(board[3][3]!=o16)
+	  (board[0][3]!=o13)||(board[1][3]!=o14)||(board[2][3]!=o15)||(board[3][3]!=o16)
       )
     {
      printf("FAILED: {{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d}} became {{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d}} instead of"
