@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include "2048.h"
 
+int tilt_board_left(int size, int **board){
+  int i =0;
+  for (i =0;i<size;i++){
+  //extract a line 
+  int list[4]={board[0][i],board[1][i],board[2][i],board[3][i]};
+  
+  //tilt the line
+    tilt_line_left(size, &list);
+	
+	//save back
+	board[0][i] = list[0];
+	board[1][i] = list[1];
+	board[2][i] = list[2];
+	board[3][i] = list[3];
+	
+  }
+  return 0;
+}
+
 int slide_single_to_left(int *int1, int *int2){
   if(*int1 == 0 && *int2 != 0){
     *int1 = *int2;
@@ -65,13 +84,13 @@ int tilt_line_right(int length,int *line)
   
   return 0;
 }
+
 int tilt_line_up(int length, int *line){
   tilt_line_left(length, line);  
   return 0;
 }
+
 int tilt_line_down(int length, int *line){
   tilt_line_right(length, line);  
   return 0;
 }
-
-

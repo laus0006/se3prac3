@@ -1,27 +1,6 @@
 #include <stdio.h>
 #include "2048.h"
-//tilt board left
-/* int tbl(int size, int **boardStart, int **boardEnd){
-  printf("Tilting\n");
-  board_display(size, boardStart);
-  printf("\ninto\n");
-  board_display(size,boardEnd);
-  
-  tilt_board_left(size, boardStart);
-  
-  int x,y;
-  for( x = 0;x < size;x++){
-	for( y=0;y<size;y++){
-	  if (boardStart[x][y] != boardEnd[x][y]){
-	    printf("Failed at element (%d,%d)\n Was %d, should be %d."
-		,x,y,boardStart[x][y],boardEnd[x][y]);
-	    return -1;
-	  }
-	}
-  }
-  printf("Success");
-  return 1;
-} */
+
  
 int line_vector_test(int i1,int i2,int i3,int i4,char *msg,
                 int o1,int o2,int o3,int o4, int (*func)(int,int *))
@@ -277,7 +256,6 @@ int test_board_left(){
 		2,2,0,0,
 		0,0,0,0,
 		tilt_board_left);
-
   return e;
 }
 
