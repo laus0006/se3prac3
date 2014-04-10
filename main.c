@@ -22,12 +22,16 @@ int main(int argc,char **argv)
     int action=read_input();
     switch(action) {
     case GO_LEFT:
+	  tilt_board_left(board_size, board);
       break;
     case GO_RIGHT:
+	tilt_board_right(board_size, board);
       break;
     case GO_UP:
+	tilt_board_up(board_size, board);
       break;
     case GO_DOWN:
+	tilt_board_down(board_size, board);
       break;
     case GO_NOWHERE:
       break;
@@ -36,5 +40,6 @@ int main(int argc,char **argv)
       printf("Invalid input. Type l, r, u or d to tilt board.\n");
       break;
     }
+	board_spawn_tile(board_size, board);
   }
 }
