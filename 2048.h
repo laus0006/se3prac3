@@ -22,3 +22,4 @@ int tilt_line_up(int length,int *line);
 int tilt_line_down(int length,int *line);
 int slide_tiles_to_left(int length, int *line);
 int slide_single_to_left(int *int1, int *int2);
+int tilt_board_left(int size, int **board);
