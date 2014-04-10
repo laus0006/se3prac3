@@ -144,8 +144,47 @@ int test_tilt_down(){
   e|=ttd_vector(2,0,1,1,"Limit to one move",0,0,2,2);
   return e;
 }
+int board4_add_tile(int i1,int i2,int i3,int i4,	
+						int i5,int i6,int i7,int i8,
+						int i9,int i10,int i11,int i12,
+						int i13,int i14,int i15,int i16,
+						char *msg, int willFail)
+{
+  int **board=alloca(4*sizeof(int*));
+  board[0]=alloca(sizeof(int)*4);
+  board[1]=alloca(sizeof(int)*4);
+  board[2]=alloca(sizeof(int)*4);
+  board[3]=alloca(sizeof(int)*4);
+  
+  board[0][0]=i1; board[1][0]=i2; board[2][0]=i3, board[3][0]=i4;
+  board[0][1]=i5; board[1][1]=i6; board[2][1]=i7, board[3][1]=i8;
+  board[0][2]=i9; board[1][2]=i10; board[2][2]=i11, board[3][2]=i12;
+  board[0][3]=i13; board[1][3]=i14; board[2][3]=i15, board[3][3]=i16;
 
-int board3_vector_test(int i1,int i2,int i3,int i4,	
+  if (msg) printf("%s - ",msg); 
+  else {
+    printf("Board operation on \n");
+    board_display(4, board);
+    printf(	"yields\n");
+	board_display(4,board);
+  }
+  fflush(stdout);
+  int success = board_spawn_tile(4,board);
+  if ((success == 0 && willFail == 0) || (success == 1 && willFail == 1))
+    {
+     printf("FAILED: {{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d}} became {{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d},{%d,%d,%d,%d}}, tile added:%d\n\n",
+             i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,
+             board[0][0],board[1][0],board[2][0],board[3][0],
+             board[0][1],board[1][1],board[2][1],board[3][1],
+             board[0][2],board[1][2],board[2][2],board[3][2],
+             board[0][3],board[1][3],board[2][3],board[3][3], success);
+      return -1;
+    } 
+  printf("PASSED.\n");
+  return 0;
+}
+
+int board4_vector_test(int i1,int i2,int i3,int i4,	
 						int i5,int i6,int i7,int i8,
 						int i9,int i10,int i11,int i12,
 						int i13,int i14,int i15,int i16,
@@ -201,7 +240,7 @@ int test_board_left(){
   int e=0;
   
 
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
@@ -212,7 +251,7 @@ int test_board_left(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_left);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,1,
 		0,0,0,1,
 		0,0,0,1,
@@ -223,7 +262,7 @@ int test_board_left(){
 		1,0,0,0,
 		1,0,0,0,
 		tilt_board_left);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -234,7 +273,7 @@ int test_board_left(){
 		1,0,0,0,
 		1,0,0,0,
 		tilt_board_left);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,1,1,1,
 		1,1,1,1,
 		1,1,1,1,
@@ -245,7 +284,7 @@ int test_board_left(){
 		2,2,0,0,
 		2,2,0,0,
 		tilt_board_left);
-	e|=board3_vector_test(
+	e|=board4_vector_test(
 		1,1,1,1,
 		0,0,0,0,
 		1,1,1,1,
@@ -262,7 +301,7 @@ int test_board_right(){
   int e=0;
   
 
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
@@ -273,7 +312,7 @@ int test_board_right(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_right);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,1,
 		0,0,0,1,
 		0,0,0,1,
@@ -284,7 +323,7 @@ int test_board_right(){
 		0,0,0,1,
 		0,0,0,1,
 		tilt_board_right);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -295,7 +334,7 @@ int test_board_right(){
 		0,0,0,1,
 		0,0,0,1,
 		tilt_board_right);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,1,1,1,
 		1,1,1,1,
 		1,1,1,1,
@@ -306,7 +345,7 @@ int test_board_right(){
 		0,0,2,2,
 		0,0,2,2,
 		tilt_board_right);
-	e|=board3_vector_test(
+	e|=board4_vector_test(
 		1,1,1,1,
 		0,0,0,0,
 		1,1,1,1,
@@ -324,7 +363,7 @@ int test_board_up(){
   int e=0;
   
 
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
@@ -335,7 +374,7 @@ int test_board_up(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_up);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,1,
 		0,0,0,1,
 		0,0,0,1,
@@ -346,7 +385,7 @@ int test_board_up(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_up);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -357,7 +396,7 @@ int test_board_up(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_up);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,1,1,1,
 		1,1,1,1,
 		1,1,1,1,
@@ -368,7 +407,7 @@ int test_board_up(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_up);
-	e|=board3_vector_test(
+	e|=board4_vector_test(
 		1,1,1,1,
 		0,0,0,0,
 		1,1,1,1,
@@ -381,12 +420,58 @@ int test_board_up(){
 		tilt_board_up);
   return e;
 }
+int test_add_tile(){
+  int e;
+  e|=board4_add_tile(
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		"Add new tile to empty board", 0);
+	e|=board4_add_tile(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,0,
+		"Add new tile to last spot in board", 0);
+	e|=board4_add_tile(
+		0,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,0,
+		"Add new tile to first spot in board", 0);
+	e|=board4_add_tile(
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Add new tile to full board", 1);
+	e|=board4_add_tile(
+		1,1,1,0,
+		1,1,1,1,
+		1,1,1,1,
+		1,1,1,1,
+		"Add new tile to topright board", 0);
+	e|=board4_add_tile(
+		1,1,1,1,
+		1,1,1,1,
+		1,0,1,1,
+		1,1,1,1,
+		"Add new tile to middle of board", 0);
+	e|=board4_add_tile(
+		1,2,1,32,
+		1,1,8,1,
+		1,2,1,1,
+		1,1,16,1,
+		"Add new tile to full board", 1);
+  return e;
+}
 
 int test_board_down(){
   int e=0;
   
 
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,0,
 		0,0,0,0,
 		0,0,0,0,
@@ -397,7 +482,7 @@ int test_board_down(){
 		0,0,0,0,
 		0,0,0,0,
 		tilt_board_down);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		0,0,0,1,
 		0,0,0,1,
 		0,0,0,1,
@@ -408,7 +493,7 @@ int test_board_down(){
 		0,0,0,2,
 		0,0,0,2,
 		tilt_board_down);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,0,0,0,
 		1,0,0,0,
 		1,0,0,0,
@@ -419,7 +504,7 @@ int test_board_down(){
 		2,0,0,0,
 		2,0,0,0,
 		tilt_board_down);
-  e|=board3_vector_test(
+  e|=board4_vector_test(
 		1,1,1,1,
 		1,1,1,1,
 		1,1,1,1,
@@ -430,7 +515,7 @@ int test_board_down(){
 		2,2,2,2,
 		2,2,2,2,
 		tilt_board_down);
-	e|=board3_vector_test(
+	e|=board4_vector_test(
 		1,1,1,1,
 		0,0,0,0,
 		1,1,1,1,
@@ -467,5 +552,7 @@ int main(int argc,char **argv)
   e|=test_board_up();
   printf("\nTesting tilt board down\n\n");
   e|=test_board_down();
+  printf("\nTesting add new tile\n\n");
+  e|=test_add_tile();
   return e;
 }
