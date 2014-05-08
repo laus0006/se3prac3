@@ -5,6 +5,7 @@ Format is as follows:
 	Technique:
 
 Aspects of the program to be tested:
+
 User Interface Testing:
 
 	Test objective: Verify the output of the 2048 game board is readable with many applicable configuration of numbers.	
