@@ -15,7 +15,11 @@ int main(int argc,char **argv)
     printf("failed to create board.\n");
     exit(0);
   }
-
+	board_spawn_tile(board_size, board);
+	board_spawn_tile(board_size, board);
+	
+	int spawn_tile_return = 0;
+	
   while(1) {
     board_display(board_size,board);
     printf("Next move? "); fflush(stdout);
@@ -40,8 +44,14 @@ int main(int argc,char **argv)
       printf("Invalid input. Type l, r, u or d to tilt board.\n");
       break;
     }
+		
 		if (action != INVALID_INPUT){
-			board_spawn_tile(board_size, board);
+			spawn_tile_return = board_spawn_tile(board_size, board);
+		}
+		if (spawn_tile_return == 1){
+			break;
 		}
   }
+	printf("You have lost, you don't get a next move."); fflush(stdout);
+	return 0;
 }
