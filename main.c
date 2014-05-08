@@ -40,6 +40,8 @@ int main(int argc,char **argv)
       printf("Invalid input. Type l, r, u or d to tilt board.\n");
       break;
     }
-	board_spawn_tile(board_size, board);
+		if (action != INVALID_INPUT){
+			board_spawn_tile(board_size, board);
+		}
   }
 }
