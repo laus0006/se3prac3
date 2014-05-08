@@ -1,10 +1,9 @@
-This test plan is for the 2048 game played through the command line.
+This test plan is for the 2048 game played through the command line. It may or may not be fulfilled by the current 2048 game.
 Format is as follows:
 	Test objective:
 	Technique:
 
 Aspects of the program to be tested:
-
 User Interface Testing:
 	Test objective: Verify the output of the 2048 game board is readable with many applicable configuration of numbers.	
 	Technique: Start application. Verify readability of initial game board. Play game for 30 turns. During each turn, check game board for readability.
@@ -24,6 +23,9 @@ Function Testing:
 	
 	Test objective: Verify that there are four possible direction the board can  tilt; up, down, left and right.
 	Technique: Start application. Check the the program accepts input 'u'p, 'd'own, 'l'eft and 'r'ight on different turns.
+	
+	Test objective: Verify that an empty input will result in a move forfeit, and add a tile to the board.
+	Technique: Start application. Press enter for input. Verify that an additional tile appears on the screen.
 	
 	Test objective: Ensure that after each valid input (tilt of the board), the game board is printed again.
 	Technique: Start application. tilt the board in each of the valid directions, checking at each stage that the board is printed again.
